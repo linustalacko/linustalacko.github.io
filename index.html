@@ -4,56 +4,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Linus Talacko</title>
-  <meta name="description" content="Linus Talacko — co-founder of Den (YC S25). Previously co-founded Lyrebird Health." />
+  <meta name="description" content="Linus Talacko — co-founder of Den. I build tools that get out of the way." />
+  <meta name="theme-color" content="#f6f3ec" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0c0b09" media="(prefers-color-scheme: dark)" />
   <meta property="og:title" content="Linus Talacko" />
-  <meta property="og:description" content="Co-founder of Den. Previously co-founded Lyrebird Health." />
+  <meta property="og:description" content="Co-founder of Den. I build tools that get out of the way." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://linustalacko.github.io/" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%2317140e'/%3E%3Ctext%20x='16'%20y='23'%20text-anchor='middle'%20font-family='Georgia,serif'%20font-size='20'%20fill='%23f6f3ec'%3EL%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="wrap">
-    <header class="intro">
-      <h1>Linus Talacko</h1>
-      <p class="tagline">Co-founder of <a href="https://getden.io">Den</a>. Building the future of work.</p>
-    </header>
-
-    <section class="about">
-      <p>
-        I'm a founder, originally from Melbourne, now in San Francisco. I'm
-        building <a href="https://getden.io">Den</a> (YC&nbsp;S25) — a multiplayer
-        platform where anyone can build and collaborate with AI agents in
-        plain language. We hit #1 on Product Hunt and integrated 50+ tools in
-        our first weeks.
+  <main class="stage">
+    <div class="reveal">
+      <p class="eyebrow" style="--i: 0">
+        San Francisco<span class="sep" aria-hidden="true"></span><time class="clock" id="clock"></time>
       </p>
-      <p>
-        Before Den, I co-founded <a href="https://www.lyrebirdhealth.com">Lyrebird&nbsp;Health</a>
-        at 19 and ran it as CTO — an AI medical scribe now used across
-        100,000+ patient consultations and scaled to a team of 50+.
-      </p>
-      <p>
-        I like building things that get out of people's way. If that
-        resonates, say hi.
-      </p>
-    </section>
 
-    <section class="links">
-      <h2>Elsewhere</h2>
-      <ul>
-        <li><a href="https://x.com/linus_talacko">Twitter / X</a></li>
-        <li><a href="https://github.com/linustalacko">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/linustalacko/">LinkedIn</a></li>
-        <li><a href="https://getden.io">Den</a></li>
-        <li><a href="mailto:linus@getden.io">Email</a></li>
-      </ul>
-    </section>
+      <h1 class="name" style="--i: 1">Linus&nbsp;Talacko<span class="dot">.</span></h1>
 
-    <footer class="foot">
-      <p>© <span id="year"></span> Linus Talacko</p>
-    </footer>
+      <p class="essence" style="--i: 2">
+        I build tools that get out of the&nbsp;way.
+      </p>
+
+      <p class="context" style="--i: 3">
+        Co-founder of <a href="https://getden.io">Den</a>, the future of&nbsp;work.
+        Before that, <a href="https://www.lyrebirdhealth.com">Lyrebird&nbsp;Health</a>.
+      </p>
+
+      <nav class="links" style="--i: 4" aria-label="Elsewhere">
+        <a href="https://x.com/linus_talacko">Twitter</a>
+        <a href="https://github.com/linustalacko">GitHub</a>
+        <a href="https://www.linkedin.com/in/linustalacko/">LinkedIn</a>
+        <a href="mailto:linus@getden.io">Email</a>
+      </nav>
+    </div>
   </main>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    const clock = document.getElementById("clock");
+    const fmt = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Los_Angeles",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+    const tick = () => {
+      const parts = fmt.formatToParts(new Date());
+      const get = (t) => parts.find((p) => p.type === t)?.value ?? "";
+      clock.textContent = `${get("hour")}:${get("minute")} ${get("dayPeriod").toLowerCase()}`;
+    };
+    tick();
+    setInterval(tick, 10000);
   </script>
 </body>
 </html>
