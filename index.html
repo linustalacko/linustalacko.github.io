@@ -14,12 +14,12 @@ p{font-size:16px;line-height:24px;margin:0 0 24px}
 .links{display:inline-flex;flex-wrap:wrap;gap:16px;margin-left:16px}
 h2{font-size:16px;line-height:24px;font-weight:700;margin:48px 0 16px}
 .work{display:flex;flex-direction:column;gap:16px;margin:0 0 32px}
-.item summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;font-size:16px;line-height:24px}
-.item summary::-webkit-details-marker{display:none}
-.item summary::before{content:"\25B8";color:#999;font-size:12px;line-height:1;display:inline-block;transition:transform .12s ease}
-.item[open] summary::before{transform:rotate(90deg)}
-.item .body{display:flex;flex-direction:column;gap:8px;margin:8px 0 0 20px}
-.desc{color:#666}
+.item .head{display:flex;align-items:center;gap:8px;font-size:16px;line-height:24px;cursor:pointer}
+.arrow{color:#999;font-size:12px;line-height:1;display:inline-block;transition:transform .12s ease;user-select:none}
+.arrow::before{content:"\25B8"}
+.item.open .arrow{transform:rotate(90deg)}
+.desc{display:none;color:#666;max-width:50%;margin:8px 0 0 20px}
+.item.open .desc{display:block}
 </style>
 </head>
 <body>
@@ -29,27 +29,25 @@ h2{font-size:16px;line-height:24px;font-weight:700;margin:48px 0 16px}
 
 <h2>Things I've worked on</h2>
 <div class="work">
-<details class="item">
-<summary>NDIS fraud finder</summary>
-<div class="body">
-<span class="desc">Australia's NDIS pays out around $48 billion a year, of which the agency estimates 6 to 10 percent is non-compliant or fraudulent. The relevant evidence is spread across separate sources: an enforcement register, the national business register, quarterly market reports and police releases. This brings them together and ranks the providers and regions most worth investigating.</span>
-<a href="https://ndis-integrity-observatory.onrender.com" target="_blank" rel="noopener">Visit &#8599;</a>
+<div class="item">
+<div class="head"><span class="arrow"></span><a href="https://ndis-integrity-observatory.onrender.com" target="_blank" rel="noopener">NDIS fraud finder</a></div>
+<p class="desc">Australia's NDIS pays out around $48 billion a year, of which the agency estimates 6 to 10 percent is non-compliant or fraudulent. The relevant evidence is spread across separate sources: an enforcement register, the national business register, quarterly market reports and police releases. This brings them together and ranks the providers and regions most worth investigating.</p>
 </div>
-</details>
-<details class="item">
-<summary>Predicting pandemic risk from genomes</summary>
-<div class="body">
-<span class="desc">An attempt to predict whether a virus can infect humans from its genome, evaluated under honest validation. Most of the accuracy reported in the literature is phylogenetic leakage: the model is largely recognising close relatives of its training data, and performance collapses once whole virus families are held out. Scaling a protein language model to 15 billion parameters recovers a small amount of signal that genuinely generalises.</span>
-<a href="https://linustalacko.github.io/zoonotic-honest-eval/" target="_blank" rel="noopener">Visit &#8599;</a>
+<div class="item">
+<div class="head"><span class="arrow"></span><a href="https://linustalacko.github.io/zoonotic-honest-eval/" target="_blank" rel="noopener">Predicting pandemic risk from genomes</a></div>
+<p class="desc">An attempt to predict whether a virus can infect humans from its genome, evaluated under honest validation. Most of the accuracy reported in the literature is phylogenetic leakage: the model is largely recognising close relatives of its training data, and performance collapses once whole virus families are held out. Scaling a protein language model to 15 billion parameters recovers a small amount of signal that genuinely generalises.</p>
 </div>
-</details>
-<details class="item">
-<summary>Animal disease map</summary>
-<div class="body">
-<span class="desc">A unified map of animal-disease outbreaks built from open feeds including USGS WHISPers, USDA APHIS, ProMED and the CDC. The mapping is straightforward; the difficulty lies in reconciling feeds that disagree on disease names, species, locations and dates, and in collapsing duplicate reports of the same outbreak. The exercise mainly revealed how patchy, slow and US-centric the open data remains.</span>
+<div class="item">
+<div class="head"><span class="arrow"></span><a href="https://linustalacko.com/warren/" target="_blank" rel="noopener">Animal disease map</a></div>
+<p class="desc">A unified map of animal-disease outbreaks built from open feeds including USGS WHISPers, USDA APHIS, ProMED and the CDC. The mapping is straightforward; the difficulty lies in reconciling feeds that disagree on disease names, species, locations and dates, and in collapsing duplicate reports of the same outbreak. The exercise mainly revealed how patchy, slow and US-centric the open data remains.</p>
 </div>
-</details>
 </div>
+<script>
+for(const h of document.querySelectorAll('.work .head')){
+h.addEventListener('click',()=>h.parentElement.classList.toggle('open'));
+h.querySelector('a').addEventListener('click',e=>e.stopPropagation());
+}
+</script>
 
 </body>
 </html>
